@@ -1,5 +1,5 @@
 # download the required mysql base image
-FROM mysql:8.0
+FROM mysql:5.7
 
 # set the environment variables
 ENV MYSQL_ROOT_PASSWORD=manager

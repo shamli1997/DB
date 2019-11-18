@@ -1,0 +1,39 @@
+================================DB===============================
+sudo docker build . -t my_app_db
+sudo docker run -itd -p 9099:3306 --name my_app_db_container my_app_db
+
+9099:Local Host
+3306:Container
+# EXPOSE PORT 3306
+
+=============================SERVER================================
+sudo docker build . -t my_app_backend
+sudo docker run -itd -p 5000:4000 --name my_app_backend_container my_app_backend
+
+5000:Local Host
+4000:Container
+#EXPOSE port 4000
+
+const connection=mysql.createConnection({
+  
+    host:'192.168.43.235',--------------------------ip address of network
+    user:'root',
+    password:'manager',
+    database:'awp',
+    port:9099--------------------------DB Localhost PORT
+});
+
+=============================CLIENT=====================================
+sudo docker build . -t my_app_frontend
+sudo docker run -itd -p 9999:80 --name my_app_frontend_container my_app_frontend
+
+9999:Local Host
+80:Container
+#EXPOSE port 80
+
+GetData()
+  {
+    return this.http.get("http://192.168.43.235:5000/employees");
+  }
+http://192.168.43.235:9999/-----------------------------url when testing the application
+
